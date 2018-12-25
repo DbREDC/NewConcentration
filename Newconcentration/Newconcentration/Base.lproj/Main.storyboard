@@ -299,6 +299,18 @@
                         <outletCollection property="buttonGroup" destination="RlO-Sx-FiC" collectionClass="NSMutableArray" id="sxM-8s-UuE"/>
                         <outletCollection property="buttonGroup" destination="VhD-D4-sTP" collectionClass="NSMutableArray" id="y1d-3u-QDT"/>
                         <outletCollection property="buttonGroup" destination="Yp2-fg-3b7" collectionClass="NSMutableArray" id="xdX-bS-Znd"/>
+                        <outletCollection property="buttonGroup" destination="kJo-kR-heW" collectionClass="NSMutableArray" id="TCD-e0-2F0"/>
+                        <outletCollection property="buttonGroup" destination="tMo-ak-bt2" collectionClass="NSMutableArray" id="aZl-Qj-Ayv"/>
+                        <outletCollection property="buttonGroup" destination="CKt-cJ-ro0" collectionClass="NSMutableArray" id="A9l-zv-yJm"/>
+                        <outletCollection property="buttonGroup" destination="e85-jk-xoU" collectionClass="NSMutableArray" id="2z6-oV-vN7"/>
+                        <outletCollection property="buttonGroup" destination="Jfy-Jv-nTw" collectionClass="NSMutableArray" id="VFy-LP-VRv"/>
+                        <outletCollection property="buttonGroup" destination="sow-yg-2nE" collectionClass="NSMutableArray" id="5gd-jb-Jtg"/>
+                        <outletCollection property="buttonGroup" destination="bP1-lh-jJh" collectionClass="NSMutableArray" id="oIw-d8-rGU"/>
+                        <outletCollection property="buttonGroup" destination="fes-wf-RTW" collectionClass="NSMutableArray" id="2wB-Lh-lVa"/>
+                        <outletCollection property="buttonGroup" destination="mUW-dK-QiD" collectionClass="NSMutableArray" id="asv-Jh-J2t"/>
+                        <outletCollection property="buttonGroup" destination="8l1-mT-QUJ" collectionClass="NSMutableArray" id="jug-Rl-wiw"/>
+                        <outletCollection property="buttonGroup" destination="xWG-z0-GZw" collectionClass="NSMutableArray" id="NsM-Q1-yZy"/>
+                        <outletCollection property="buttonGroup" destination="J8h-1P-V8D" collectionClass="NSMutableArray" id="76M-si-F2z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
