@@ -11,7 +11,7 @@ import UIKit
 class ViewController: UIViewController {
     
     lazy var game = Concentration(numberOfPairsOfCards : (buttonGroup.count + 1) / 2)
-
+    
     
     var flipCount = 0 {
         didSet {
@@ -19,7 +19,25 @@ class ViewController: UIViewController {
         }
     }
     
+    var cardDidAppear = [Int:Bool]()
+    
+    var scoreCount = 0 {
+        didSet {
+            scoreLable.text = "Score : \(scoreCount)"
+        }
+    }
+    
+    
     @IBOutlet weak var flipCountLabel: UILabel!
+    @IBOutlet weak var scoreLable: UILabel!
+    
+    @IBAction func newGame(_ sender: UIButton) {
+        game.startNewGame()
+        emoji = [Int:String]()
+        currentTheme = chooseTheme()
+        flipCount = 0
+        updateViewFormModel()
+    }
     
     @IBOutlet var buttonGroup: [UIButton]!
     
@@ -28,11 +46,11 @@ class ViewController: UIViewController {
             flipCount += 1
             game.chooseCard(at: cardNumber)
             updateViewFormModel()
-            //filpCard(withEmoji: emojiGroup[cardNumber], on: sender)
         }
     }
     
     func updateViewFormModel() {
+        scoreCount = game.totalScore
         for index in buttonGroup.indices {
             let button = buttonGroup[index]
             let card = game.cards[index]
@@ -45,32 +63,33 @@ class ViewController: UIViewController {
             }
         }
     }
-    var emojiGroup = ["😈","👻","💄","💍","🐶","🐷","🐸","🐵","🐥","🦄","🐠","🦀","🐿","🍄","🍎","🥝","🌽","🍞","🍔","🍙","🏀","🎲","🚗","🚄","⌚️","⏰"]
+    
+    var emojiTheme = [["🐶","🐱","🐭","🐸","🐵","🐔","🐥","🦋","🦀","🐅"],["🍏","🍎","🍉","🍇","🍒","🌽","🍆","🥦","🌭","🍔"],["⚽️","🏀","🏈","🎱","🏓","🥊","🎽","🎹","🎼"],["🚗","🚌","🚒","🚲","🚖","🚄","🚆","✈️","🛳","🚁"],["⌚️","🖨","🖥","📞","⏱","🔋","🔌","🛢","⛏","🔑"],["😀","😅","😇","😍","😋","🤨","😏","😡","😰","🤩"]]
+    
+    var currentTheme = [String]()
     
     var emoji = [Int:String]()
     
     func getEmoji(for card : Card) -> String {
-        if emoji[card.identifier] == nil , emojiGroup.count > 0{
-            let randomIndex = Int(arc4random_uniform(UInt32(emojiGroup.count)))
-            emoji[card.identifier] = emojiGroup.remove(at: randomIndex)
+        
+        if emoji[card.identifier] == nil , currentTheme.count > 0{
+            let randomIndex = Int(arc4random_uniform(UInt32(currentTheme.count)))
+            emoji[card.identifier] = currentTheme.remove(at: randomIndex)
         }
         return emoji[card.identifier] ?? "?"
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-       // shuffleEmoji()
+    func chooseTheme() -> [String] {
+        let randomIndex = Int(arc4random_uniform(UInt32(emojiTheme.count)))
+        return emojiTheme[randomIndex]
     }
     
-//    func shuffleEmoji() {
-//        let emojiNumber = emojiGroup.count
-//        for i in 0..<emojiNumber {
-//            let j = Int(arc4random_uniform(UInt32(emojiNumber-i)))+i
-//            if i != j {
-//                (emojiGroup[i],emojiGroup[j]) = (emojiGroup[j],emojiGroup[i])
-//            }
-//        }
-//    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        game.startNewGame()
+        currentTheme = chooseTheme()
+        scoreCount = 0
+    }
     
 }
 
