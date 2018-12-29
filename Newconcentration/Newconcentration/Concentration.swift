@@ -13,6 +13,7 @@ class Concentration {
     var cards = [Card]()
     var indexOfOneAndOnlyFaceUpCard : Int?
     var cardDidAppear = [Int:Bool]()
+    var indexDidAppear = [Int:Bool]()
     var totalScore = 0
     
     func chooseCard(at index : Int) {
@@ -24,14 +25,19 @@ class Concentration {
                     totalScore += 2
                     cardDidAppear[cards[index].identifier] = nil
                 }
+                //实现减分,如果两张牌之前都出现过,-2,如果第一张牌是之前出现过的,但是第二张牌之前没出现
                 if cardDidAppear[cards[index].identifier] ?? false,cardDidAppear[cards[matchIndex].identifier] ?? false{
                     totalScore += -2
-                } else if cardDidAppear[cards[index].identifier] ?? false || cardDidAppear[cards[matchIndex].identifier] ?? false {
+                }else if cardDidAppear[cards[matchIndex].identifier] == nil , !(indexDidAppear[index] ?? false){
+                    
+                }else if cardDidAppear[cards[index].identifier] ?? false || cardDidAppear[cards[matchIndex].identifier] ?? false {
                     totalScore += -1
                 }
                 
                 cardDidAppear[cards[matchIndex].identifier] = true
                 cardDidAppear[cards[index].identifier] = true
+                indexDidAppear[index] = true
+                indexDidAppear[matchIndex] = true
                 cards[index].isFaceUp = true
                 indexOfOneAndOnlyFaceUpCard = nil
             } else {
@@ -41,6 +47,7 @@ class Concentration {
                 cards[index].isFaceUp = true
                 indexOfOneAndOnlyFaceUpCard = index
             }
+            
         }
     }
     
